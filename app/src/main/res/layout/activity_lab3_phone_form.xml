@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lab3.Lab3PhoneForm">
+
+    <include
+        android:id="@+id/lab3_phone_form_toolbar"
+        layout="@layout/toolbar_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TableLayout
+        android:id="@+id/phoneForm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/lab3_phone_form_toolbar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/manufacturerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lab3_form_manufacturer_label"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/manufacturerField"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:id="@+id/modelLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lab3_form_model_label"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/modelField"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:id="@+id/versionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lab3_form_version_label"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/versionField"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:id="@+id/websiteLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lab3_form_website_label"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/websiteField"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <Button
+                android:id="@+id/phoneFormWebsiteButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lab3_form_website_button" />
+
+            <Button
+                android:id="@+id/phoneFormSaveButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="@string/lab3_form_save_button" />
+
+            <Button
+                android:id="@+id/phoneFormCancelButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lab3_form_cancel_button" />
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Lab android</string>
+    <string name="main_lab1_button_name">Lab 1</string>
+    <string name="lab1_name_label">Imię:</string>
+    <string name="lab1_name_hint">Podaj imie</string>
+    <string name="lab1_surname_label">Nazwisko:</string>
+    <string name="lab1_surnname_hint">Podaj nazwisko</string>
+    <string name="lab1_grade_label">Liczba ocen:</string>
+    <string name="lab1_grade_hint">Podaj liczbę ocen (5-15)</string>
+    <string name="lab1_grade_button">OCENY</string>
+    <string-array name="lab1_subjects">
+        <item>Matematyka</item>
+        <item>Java</item>
+        <item>Python</item>
+        <item>Strony internetowe</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>Język angielski</item>
+        <item>Bazy danych</item>
+        <item>Sieci</item>
+        <item>W-F</item>
+        <item>Inżynieria oprogramowania</item>
+        <item>Aplikacje chmurowe</item>
+        <item>Mikrokontrolery</item>
+        <item>Integracja systemów</item>
+        <item>Elektrotechnika</item>
+    </string-array>
+    <string name="lab1_calculate_mean_button">Oblicz średnią</string>
+    <string name="lab1_mean_grade_result_good">Super :)</string>
+    <string name="lab1_mean_grade_result_bad">Tym razem mi nie poszło</string>
+    <string name="lab1_result_good">Gratulacje! Otrzymujesz zaliczenie!</string>
+    <string name="lab1_result_bad">Wysyłam podanie o zaliczenie warunkowe</string>
+    <string name="main_lab3_button_name">Lab 3</string>
+    <string name="lab3_menu_delete_item">Delete all</string>
+    <string name="lab3_form_manufacturer_label">Producent:</string>
+    <string name="lab3_form_model_label">Model:</string>
+    <string name="lab3_form_version_label">Wersja androida:</string>
+    <string name="lab3_form_website_label">Strona www:</string>
+    <string name="lab3_form_website_button">Strona WWW</string>
+    <string name="lab3_form_save_button">Zapisz</string>
+    <string name="lab3_form_cancel_button">Anuluj</string>
+    <string name="main_lab4_button_name">Lab 4</string>
+    <string name="lab4_website_url_label">Adres: </string>
+    <string name="lab4_website_url_field">https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.4.36.tar.xz</string>
+    <string name="lab4_download_info_button">POBIERZ INFORMACJE</string>
+    <string name="lab4_file_size_label">Rozmiar pliku: </string>
+    <string name="lab4_file_type_label">Typ pliku: </string>
+    <string name="lab4_download_file_button">POBIERZ PLIK</string>
+    <string name="lab4_bytes_label">Pobrano bajtów: </string>
+</resources>
