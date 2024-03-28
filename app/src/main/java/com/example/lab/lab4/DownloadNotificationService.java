@@ -35,7 +35,8 @@ public class DownloadNotificationService {
                 .setProgress(100, 0, false)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+                .setChannelId(DOWNLOAD_CHANNEL_ID);
         return builder.build();
     }
 

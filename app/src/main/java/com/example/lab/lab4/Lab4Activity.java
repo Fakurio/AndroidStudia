@@ -1,17 +1,24 @@
 package com.example.lab.lab4;
 
 
+import android.content.Context;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.Manifest;
 import android.widget.Toast;
@@ -21,12 +28,15 @@ import com.example.lab.addToolbar;
 
 import java.util.Optional;
 
-public class Lab4Activity extends AppCompatActivity implements addToolbar, HttpConnectionListener {
+public class Lab4Activity extends AppCompatActivity implements addToolbar, HttpConnectionListener,
+    FileDownloadListener{
     private Toolbar toolbar;
     private EditText websiteUrlField;
-    private TextView fileSizeValue, fileTypeValue;
+    private TextView fileSizeValue, fileTypeValue, downloadedBytesValue;
     private Button downloadInfoButton, downloadFileButton;
+    private ProgressBar progressBar;
     private HttpConnectionTask http;
+    private DownloadProgressReceiver receiver;
     private static final int REQUEST_WRITE_EXTERNAL_STORAGE = 4;
 
 
@@ -39,6 +49,8 @@ public class Lab4Activity extends AppCompatActivity implements addToolbar, HttpC
 
     private void setDownloadFileButton() {
         downloadFileButton.setOnClickListener(v -> {
+            progressBar.setProgress(0, true);
+            downloadedBytesValue.setText("0");
             if(ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 HttpConnectionService.startService(this, websiteUrlField.getText().toString());
@@ -62,6 +74,15 @@ public class Lab4Activity extends AppCompatActivity implements addToolbar, HttpC
         toolbar.setNavigationOnClickListener(v -> finish());
     }
 
+    private void restoreValues(Bundle savedInstanceState) {
+        if(savedInstanceState != null) {
+            downloadedBytesValue.setText(savedInstanceState.getString("downloadedBytes"));
+            fileSizeValue.setText(savedInstanceState.getString("fileSize"));
+            fileTypeValue.setText(savedInstanceState.getString("fileType"));
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +94,31 @@ public class Lab4Activity extends AppCompatActivity implements addToolbar, HttpC
         websiteUrlField = findViewById(R.id.websiteUrlField);
         fileSizeValue = findViewById(R.id.fileSizeValue);
         fileTypeValue = findViewById(R.id.fileTypeValue);
+        downloadedBytesValue = findViewById(R.id.bytesValue);
+        progressBar = findViewById(R.id.downloadProgressBar);
+        restoreValues(savedInstanceState);
 
+        receiver = new DownloadProgressReceiver(this);
+        registerReceiver(receiver, new IntentFilter(HttpConnectionService.DOWNLOAD_NOTIFICATION),
+                Context.RECEIVER_NOT_EXPORTED);
         downloadInfoButton = findViewById(R.id.downloadInfoButton);
         setDownloadInfoButton();
         downloadFileButton = findViewById(R.id.downloadFileButton);
         setDownloadFileButton();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("downloadedBytes", downloadedBytesValue.getText().toString());
+        outState.putString("fileSize", fileSizeValue.getText().toString());
+        outState.putString("fileType", fileTypeValue.getText().toString());
     }
 
     @Override
@@ -104,5 +144,12 @@ public class Lab4Activity extends AppCompatActivity implements addToolbar, HttpC
                 Toast.makeText(this, "Brak uprawnień do pobrania pliku", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @Override
+    public void onDownloadProgressUpdate(ProgressInfo progressInfo) {
+        progressBar.setMax(progressInfo.getTotalSize());
+        progressBar.setProgress(progressInfo.getDownloadedAmount(), true);
+        downloadedBytesValue.setText(String.valueOf(progressInfo.getDownloadedAmount()));
     }
 }

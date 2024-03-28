@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -25,7 +27,8 @@ public class HttpConnectionService extends IntentService {
     private final static String DOWNLOAD_FILE = "40";
     private final static String FILE_URL_ARG = "1";
     private DownloadNotificationService downloadNotificationService;
-
+    public static final String DOWNLOAD_NOTIFICATION = "downloadNotification";
+    public static final String DOWNLOAD_PROGRESS_INFO = "downloadProgressInfo";
 
     public HttpConnectionService() {
         super("HttpConnectionService");
@@ -65,6 +68,8 @@ public class HttpConnectionService extends IntentService {
         HttpsURLConnection conn = null;
         DataInputStream inputStream = null;
         FileOutputStream outputStream = null;
+        int progress = 0;
+        int fileSize = 0;
         try {
             Log.i("HttpConnectionService", "Rozpoczynam pobieranie");
             URL url = new URL(urlString);
@@ -81,20 +86,22 @@ public class HttpConnectionService extends IntentService {
             outputStream = new FileOutputStream(outputFile.getPath());
             byte buffer[] = new byte[1024];
             int bytesRead;
-            int fileSize = conn.getContentLength();
-            int progress = 0;
+            fileSize = conn.getContentLength();
             int step = 1;
             while((bytesRead = inputStream.read(buffer, 0, 1024)) != -1) {
                 progress += bytesRead;
                 if(progress >= (fileSize/10)*step) {
                     downloadNotificationService.updateNotificationProgress(step*10);
                     step++;
+                    sendProgressBroadcast(progress, fileSize, ProgressStatus.RUNNING);
                 }
                 outputStream.write(buffer, 0, bytesRead);
             }
             Log.i("HttpConnectionService", "Pobieranie zakończone");
             downloadNotificationService.setAsCompleted();
+            sendProgressBroadcast(progress, fileSize, ProgressStatus.COMPLETED);
         } catch (Exception e) {
+            sendProgressBroadcast(progress, fileSize, ProgressStatus.ERROR);
             throw new RuntimeException(e);
         } finally {
             if(inputStream != null) {
@@ -107,5 +114,12 @@ public class HttpConnectionService extends IntentService {
                 conn.disconnect();
             }
         }
+    }
+
+    private void sendProgressBroadcast(int downloadedAmount, int totalSize, ProgressStatus status) {
+        Intent intent = new Intent(DOWNLOAD_NOTIFICATION);
+        ProgressInfo info = new ProgressInfo(downloadedAmount, totalSize, status);
+        intent.putExtra(DOWNLOAD_PROGRESS_INFO, info);
+        sendBroadcast(intent);
     }
 }
