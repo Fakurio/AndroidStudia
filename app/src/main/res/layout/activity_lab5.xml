@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lab5.Lab5Activity">
+
+    <include
+        android:id="@+id/toolbar_lab5"
+        layout="@layout/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_lab5">
+
+    </FrameLayout>
+
+    <!--    <SurfaceView-->
+<!--        android:id="@+id/lab5SurfaceView"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="580dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/toolbar_lab5" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/redButton"-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:background="@color/red"-->
+<!--        android:tag="red"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lab5SurfaceView"-->
+<!--        tools:backgroundTint="@null" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/yellowButton"-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:background="@color/yellow"-->
+<!--        android:tag="yellow"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/redButton"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lab5SurfaceView" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/blueButton"-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:background="@color/blue"-->
+<!--        android:tag="blue"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/yellowButton"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lab5SurfaceView" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/greenButton"-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:background="@color/green"-->
+<!--        android:tag="green"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/blueButton"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lab5SurfaceView" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/clearSurfaceButton"-->
+<!--        android:layout_width="70dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:text="X"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lab5SurfaceView" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

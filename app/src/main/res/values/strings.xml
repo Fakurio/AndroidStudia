@@ -47,4 +47,13 @@
     <string name="lab4_file_type_label">Typ pliku: </string>
     <string name="lab4_download_file_button">POBIERZ PLIK</string>
     <string name="lab4_bytes_label">Pobrano bajtów: </string>
+    <string name="main_lab5_button_name">Lab 5</string>
+    <string name="lab5_menu_save_image">Zapisz</string>
+    <string name="lab5_menu_gallery">Galeria</string>
+    <string name="lab5_menu_paint_surface">Rysuj</string>
+    <string name="save_image_fragment_name_label">Nazwa pliku:</string>
+    <string name="save_image_fragment_name_field">Podaj nazwę pliku</string>
+    <string name="save_image_fragment_save_button">Zapisz obraz</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
